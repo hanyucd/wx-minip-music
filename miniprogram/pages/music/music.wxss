@@ -1,0 +1,6 @@
+/* miniprogram/pages/music/music.wxss */
+
+.swiper-img {
+  width: 100%;
+  height: 100%;
+}
