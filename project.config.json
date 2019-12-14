@@ -23,9 +23,10 @@
 	},
 	"appid": "wx81d0bb9da8c3046d",
 	"projectname": "wx-minip-music",
-	"libVersion": "2.8.3",
+	"libVersion": "2.9.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
