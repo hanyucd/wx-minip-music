@@ -10,6 +10,6 @@
 <!-- 歌单列表 -->
 <view class="playlist-wrap">
   <block wx:for="{{ playlist }}" wx:key="_id">
-    <c-playlist playlist="{{ item }}"></c-playlist>
+    <x-playlist playlist="{{ item }}"></x-playlist>
   </block>
 </view>

@@ -3,6 +3,6 @@
   <image class="playlist-img" src="{{ playlist.picUrl }}"></image>
    <!-- 阴影层 -->
   <view class="playlist-img-mask"></view>
-  <text class="playlist-count">{{ _count }}</text>
+  <text class="playlist-count">{{ playCount }}</text>
   <view class="playlist-name">{{ playlist.name }}</view>
 </view>
