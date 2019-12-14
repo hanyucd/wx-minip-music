@@ -1,0 +1,14 @@
+/* miniprogram/pages/music/music.wxss */
+
+.playlist-wrap {
+  display: flex;  
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10rpx;
+}
+
+.swiper-img {
+  width: 100%;
+  height: 100%;
+}

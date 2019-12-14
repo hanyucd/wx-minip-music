@@ -6,3 +6,10 @@
     </swiper-item>
   </block>
 </swiper>
+
+<!-- 歌单列表 -->
+<view class="playlist-wrap">
+  <block wx:for="{{ playlist }}" wx:key="_id">
+    <c-playlist playlist="{{ item }}"></c-playlist>
+  </block>
+</view>

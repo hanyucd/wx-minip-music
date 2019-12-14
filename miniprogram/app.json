@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/music/music",
+    "pages/playlist/playlist",
     "pages/blog/blog",
     "pages/profile/profile"
   ],
@@ -16,7 +16,7 @@
     "selectedColor": "#d81e06",
     "list": [
       {
-        "pagePath": "pages/music/music",
+        "pagePath": "pages/playlist/playlist",
         "text": "音乐",
         "iconPath": "images/music.png",
         "selectedIconPath": "images/music-active.png"

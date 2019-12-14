@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "c-playlist": "/components/playlist/playlist"
+  }
+}
