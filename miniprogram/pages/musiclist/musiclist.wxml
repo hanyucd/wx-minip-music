@@ -1,2 +1,10 @@
-<!--miniprogram/pages/musiclist/musiclist.wxml-->
-<text>miniprogram/pages/musiclist/musiclist.wxml</text>
+<view class="detail-container" style="background: url({{ coverImgInfo.coverImgUrl }}) no-repeat top/cover"></view>
+<view class="detail-mask"></view>
+<view class="detail-info">
+  <image class="detail-img" src="{{ coverImgInfo.coverImgUrl }}"></image>
+  <view class="detail">
+    <view class="detail-name">{{ coverImgInfo.coverImgName }}</view>
+  </view>
+</view>
+<!-- 歌曲条目 -->
+<x-musiclist musiclist="{{ musiclist }}" />
