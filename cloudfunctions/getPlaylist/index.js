@@ -6,7 +6,7 @@ cloud.init();
 const URL = 'http://musicapi.xiecheng.live/personalized'; // 第三方服务器地址
 const db = cloud.database(); // 初始化数据库
 const playlistCollection = db.collection('playlist'); // 获取数据库 playlist 集合
-const MAX_LIMIT = 10 // 定义常量 -- 获取数据库条数最大的限制
+const MAX_LIMIT = 100; // 定义常量 -- 获取数据库条数最大的限制
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -26,7 +26,6 @@ exports.main = async (event, context) => {
   }
   if (tasks.length) {
     list = (await Promise.all(tasks)).reduce((acc, cur) => {
-      // return { data: acc.data.concat(cur.data) };
       return { data: [...acc.data, ...cur.data] };
     });
   }

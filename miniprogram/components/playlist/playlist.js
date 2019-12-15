@@ -27,7 +27,6 @@ Component({
 
   lifetimes: {
     attached() {
-      console.log(this.foo());
     }
   },
 
@@ -35,8 +34,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    async foo() {
-      await console.log('foo');
+    goToMusicList() {
+      // 跳转链接 并传入参数，在目标页面中的 onLoad 方法的 options 参数接收传入的参数
+      wx.navigateTo({
+        url: `../../pages/musiclist/musiclist?playlistId=${ this.properties.playlist.id }`
+      });
     },
     /**
      * 格式化歌单播放量数字

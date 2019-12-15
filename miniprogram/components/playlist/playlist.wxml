@@ -1,5 +1,5 @@
 <!-- 歌单条目 -->
-<view class="playlist-container">
+<view class="playlist-container" bindtap="goToMusicList">
   <image class="playlist-img" src="{{ playlist.picUrl }}"></image>
    <!-- 阴影层 -->
   <view class="playlist-img-mask"></view>
