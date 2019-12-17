@@ -1,11 +1,16 @@
 // miniprogram/pages/player/player.js
-Page({
+let currentMusicIndex = 0; // 当前播放歌曲的索引
+let globalMusicList = []; // 存储全局的歌单歌曲列表
+let musiclist = []; // 歌单歌曲列表
 
+const app = getApp() // 获取全局app实例
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    picUrl: '' // 歌曲的封面图
   },
 
   /**
@@ -13,54 +18,23 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+    currentMusicIndex = options.index;
+    this._loadMusicDetail(options.musicId);
   },
-
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 加载歌曲的信息包括歌词
+   * @param {String} musicId 
    */
-  onReady: function () {
+  _loadMusicDetail(musicId) {
+    globalMusicList = app.globalData.musicList;
+    wx.setStorageSync('musiclist', globalMusicList);
+    musiclist = wx.getStorageSync('musiclist');
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    let musicInfo = musiclist[currentMusicIndex];
+    wx.setNavigationBarTitle({ title: musicInfo.name });
+    this.setData({
+      picUrl: musicInfo.al.picUrl
+    });
+    console.log(musicInfo);
   }
-})
+});

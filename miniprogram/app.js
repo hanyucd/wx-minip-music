@@ -12,9 +12,21 @@ App({
         //   如不填则使用默认环境（第一个创建的环境）
         env: 'cloud-develop-143u6',
         traceUser: true,
-      })
+      });
     }
 
-    this.globalData = {};
-  }
+    // 全局数据
+    this.globalData = {
+      musicList: [] // 存储进入歌单歌曲列表页时的歌曲信息
+    };
+  },
+
+  /**
+   * 设置全局的歌曲列表
+   * @param {Array} musicList 歌曲列表
+   */
+  setMusicList(musicList) {
+    this.globalData.musicList = musicList;
+  },
+
 });

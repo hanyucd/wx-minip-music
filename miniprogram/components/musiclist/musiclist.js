@@ -1,4 +1,6 @@
 // components/musiclist/musiclist.js
+const app = getApp();
+
 Component({
   /**
    * 组件的属性列表
@@ -15,6 +17,10 @@ Component({
   data: {
     playerId: -1
   },
+  pageLifetimes: {
+    show() {
+    }
+  },
 
   /**
    * 组件的方法列表
@@ -25,6 +31,9 @@ Component({
      * @param {Event} event 
      */
     handleSelect(event) {
+      // 将当前歌单所有歌曲信息储存在全局的 musicList 中
+      app.setMusicList(this.properties.musiclist);
+
       const ds = event.currentTarget.dataset;
       this.setData({ playerId: ds.musicId });
       wx.navigateTo({

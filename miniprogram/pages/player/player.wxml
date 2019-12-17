@@ -1,2 +1,2 @@
-<!--miniprogram/pages/player/player.wxml-->
-<text>miniprogram/pages/player/player.wxml</text>
+<view class="player-container" style="background: url({{ picUrl }}) center/cover no-repeat"></view>
+<view class="player-mask"></view>

@@ -28,11 +28,11 @@ exports.main = async (event, context) => {
   // 获取歌单列表
   app.router('playlist', async (ctx, next) => {
     ctx.body = await cloud.database().collection('playlist')
-    .skip(event.start)
-    .limit(event.count)
-    .orderBy('createTime', 'desc')
-    .get()
-    .then(res => res);
+      .skip(event.start)
+      .limit(event.count)
+      .orderBy('createTime', 'desc')
+      .get()
+      .then(res => res);
   });
 
   // 根据歌单 id 获取歌曲列表
@@ -41,5 +41,6 @@ exports.main = async (event, context) => {
     ctx.body = await rp(`${ BASE_URL }/playlist/detail?id=${ parseInt(event.playlistId) }`)
       .then(res => JSON.parse(res));
   });
+  
   return app.serve();
 };
