@@ -41,6 +41,12 @@ exports.main = async (event, context) => {
     ctx.body = await rp(`${ BASE_URL }/playlist/detail?id=${ parseInt(event.playlistId) }`)
       .then(res => JSON.parse(res));
   });
+
+  // 获取歌曲链接
+  app.router('musicUrl', async (ctx, next) => {
+    ctx.body = await rp(`${ BASE_URL }/song/url?id=${ event.musicId }`)
+      .then(res => JSON.parse(res));
+  });
   
   return app.serve();
 };

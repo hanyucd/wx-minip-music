@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     currentMusicIndex = options.index;
     this._loadMusicDetail(options.musicId);
   },
@@ -27,7 +26,9 @@ Page({
    */
   _loadMusicDetail(musicId) {
     globalMusicList = app.globalData.musicList;
+    // 拿去全局的歌曲列表，将歌单所有歌曲信息储存在Storage
     wx.setStorageSync('musiclist', globalMusicList);
+    // 获取歌单歌曲
     musiclist = wx.getStorageSync('musiclist');
 
     let musicInfo = musiclist[currentMusicIndex];
@@ -35,6 +36,17 @@ Page({
     this.setData({
       picUrl: musicInfo.al.picUrl
     });
-    console.log(musicInfo);
+    // console.log(musicInfo);
+    
+    // 获取歌曲播放链接
+    wx.cloud.callFunction({
+      name: 'music',
+      data: {
+        musicId,
+        $url: 'musicUrl'
+      }
+    }).then(res => {
+      console.log(res);
+    });
   }
 });
