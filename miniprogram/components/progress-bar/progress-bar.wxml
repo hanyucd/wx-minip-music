@@ -1,2 +1,27 @@
-<!--components/progress-bar/progress-bar.wxml-->
-<text>components/progress-bar/progress-bar.wxml</text>
+<view class="container">
+  <text class="time">{{ showTime.currentTime }}</text>
+
+  <view class="control">
+    <!-- 表示可移动的区域 -->
+    <movable-area class="movable-area">
+      <!-- 可移动的视图容器，必须在 movable-area 里面 (样式为圆点)-->
+      <movable-view 
+        class="movable-view"
+        direction="horizontal"
+        damping="1000"
+        x="{{ movableDis }}"
+        >
+      </movable-view>
+    </movable-area>
+    <!-- 进度条组件 -->
+    <progress
+      stroke-width="4"
+      backgroundColor="#969696"
+      activeColor="#fff"
+      percent="{{ progress }}"
+      >
+    </progress>
+  </view>
+
+  <text class="time">{{ showTime.totalTime }}</text>
+</view>

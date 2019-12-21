@@ -4,14 +4,19 @@
 
 <!-- 封面信息 -->
 <view class="player-info">
+  <!-- 唱片 -->
   <view class="player-disc {{ isPlaying ? 'playing' : '' }}">
     <image class="player-img rotation {{ isPlaying ? '' : 'player-pause' }}" src="{{ picUrl }}"></image>
   </view>
-</view>
 
-<!-- 控制面板 -->
-<view class="control">
-  <text class="iconfont icon-shangyishoushangyige" bindtap="prevMusic"></text>
-  <text class="iconfont {{ isPlaying ? 'icon-suspend_icon' : 'icon-bofang' }}" bindtap="togglePlay"></text>
-  <text class="iconfont icon-xiayigexiayishou" bindtap="nextMusic"></text>
+  <!-- 歌曲进度条 -->
+  <view class="progress-bar">
+    <x-progress-bar></x-progress-bar>
+  </view>
+  <!-- 控制面板 -->
+  <view class="control">
+    <text class="iconfont icon-shangyishoushangyige" bindtap="prevMusic"></text>
+    <text class="iconfont {{ isPlaying ? 'icon-suspend_icon' : 'icon-bofang' }}" bindtap="togglePlay"></text>
+    <text class="iconfont icon-xiayigexiayishou" bindtap="nextMusic"></text>
+  </view>
 </view>

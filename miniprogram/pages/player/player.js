@@ -49,7 +49,6 @@ Page({
       }
     }).then(res => {
       const result = res.result;
-      console.log(result);
 
       backgroundAudioManager.src = result.data[0].url;
       backgroundAudioManager.title = musicInfo.name;
