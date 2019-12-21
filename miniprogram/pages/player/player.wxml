@@ -1,14 +1,17 @@
 <view class="player-container" style="background: url({{ picUrl }}) center/cover no-repeat"></view>
+<!-- 遮罩层样式 -->
 <view class="player-mask"></view>
 
+<!-- 封面信息 -->
 <view class="player-info">
-  <view class="player-disc">
-    <image class="player-img" src="{{ picUrl }}"></image>
+  <view class="player-disc {{ isPlaying ? 'playing' : '' }}">
+    <image class="player-img rotation {{ isPlaying ? '' : 'player-pause' }}" src="{{ picUrl }}"></image>
   </view>
 </view>
 
+<!-- 控制面板 -->
 <view class="control">
-  <text class="iconfont icon-shangyishoushangyige"></text>
-  <text class="iconfont icon-suspend_icon"></text>
-  <text class="iconfont icon-xiayigexiayishou"></text>
+  <text class="iconfont icon-shangyishoushangyige" bindtap="prevMusic"></text>
+  <text class="iconfont {{ isPlaying ? 'icon-suspend_icon' : 'icon-bofang' }}" bindtap="togglePlay"></text>
+  <text class="iconfont icon-xiayigexiayishou" bindtap="nextMusic"></text>
 </view>
