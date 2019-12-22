@@ -3,6 +3,7 @@ let movableAreaWidth = 0; // 歌曲播放进度条宽度
 let movableViewWidth = 0; // 歌曲圆点宽度
 let duration = 0;  // 储存歌曲总时长
 let currentSec = -1; // 当前播放的秒数
+let isMoving = false; // 用户是否拖拽进度条圆点
 
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 const app = getApp();
@@ -48,6 +49,7 @@ Component({
         // 注意：不是通过setData修改的值不会同步到页面(只是在this.data上新增属性)
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth) * 100;
         this.data.movableDis = event.detail.x;
+        isMoving = true;
       }
     },
     /**
@@ -63,6 +65,7 @@ Component({
         movableDis: this.data.movableDis,
         'showTime.currentTime': `${ currentTimeFmt.min }:${ currentTimeFmt.sec }` 
       });
+      isMoving = false;
     },
     /**
      * 获取当前设备中的进度条及其进度条圆点的尺寸
@@ -82,6 +85,7 @@ Component({
     _bindBGMEvent() {
       // 播放事件
       backgroundAudioManager.onPlay(() => {
+        isMoving = false;
         console.log('onPlay');
       });
       // 监听背景音频停止事件
@@ -108,6 +112,8 @@ Component({
       });
       // 监听背景音频播放进度更新事件
       backgroundAudioManager.onTimeUpdate(() => {
+        if (isMoving) return;
+
         const currentTime = backgroundAudioManager.currentTime;
         const sec = currentTime.toString().split('.')[0];
         // 性能优化 (因为onTimeUpdate事件每秒约执行4次，频繁的setData影响性能)
