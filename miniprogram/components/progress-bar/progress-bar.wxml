@@ -10,6 +10,8 @@
         direction="horizontal"
         damping="1000"
         x="{{ movableDis }}"
+        bindchange="onChange"
+        bindtouchend="onTouchEnd"
         >
       </movable-view>
     </movable-area>
