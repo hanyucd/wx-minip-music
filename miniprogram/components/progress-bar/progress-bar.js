@@ -3,7 +3,7 @@ let movableAreaWidth = 0; // 歌曲播放进度条宽度
 let movableViewWidth = 0; // 歌曲圆点宽度
 let duration = 0;  // 储存歌曲总时长
 let currentSec = -1; // 当前播放的秒数
-let isMoving = false; // 用户是否拖拽进度条圆点
+let isMoving = false; // 用户是否拖拽进度条圆点 解决：当进度条拖动的时候和 updatatime 事件有冲突的问题
 
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 const app = getApp();
@@ -44,9 +44,9 @@ Component({
      * 进度条圆点移动事件
      */
     onChange(event) {
-      // 拖动进度条的时候，event事件属性下的source属性会等于'touch'
+      // 拖动进度条的时候，event事件属性下的 source 属性会等于'touch'
       if (event.detail.source == 'touch') {
-        // 注意：不是通过setData修改的值不会同步到页面(只是在this.data上新增属性)
+        // 注意：不是通过 setData 修改的值不会同步到页面 (只是在 this.data 上新增属性)
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth) * 100;
         this.data.movableDis = event.detail.x;
         isMoving = true;
@@ -133,6 +133,8 @@ Component({
       });
       // 监听背景音频自然播放结束事件
       backgroundAudioManager.onEnded(() => {
+        // 触发事件 传给父组件
+        this.triggerEvent('musicEnd');
       });
       // 监听背景音频播放错误事件
       backgroundAudioManager.onError(() => {
@@ -167,4 +169,4 @@ Component({
       return time < 10 ? `0${ time }` : time;
     }
   }
-})
+});

@@ -11,7 +11,10 @@
 
   <!-- 歌曲进度条 -->
   <view class="progress-bar">
-    <x-progress-bar></x-progress-bar>
+    <x-progress-bar
+      bind:musicEnd="nextMusic"
+      >
+    </x-progress-bar>
   </view>
   <!-- 控制面板 -->
   <view class="control">

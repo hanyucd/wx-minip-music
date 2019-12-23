@@ -29,7 +29,7 @@ Page({
     backgroundAudioManager.stop();
     
     globalMusicList = app.globalData.musicList;
-    // 拿去全局的歌曲列表，将歌单所有歌曲信息储存在Storage
+    // 取全局的歌曲列表，将歌单所有歌曲信息储存在Storage
     wx.setStorageSync('musiclist', globalMusicList);
     // 获取歌单歌曲
     musiclist = wx.getStorageSync('musiclist');
