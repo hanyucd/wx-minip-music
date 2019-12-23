@@ -5,14 +5,24 @@
 <!-- 封面信息 -->
 <view class="player-info">
   <!-- 唱片 -->
-  <view class="player-disc {{ isPlaying ? 'playing' : '' }}">
+  <view class="player-disc {{ isPlaying ? 'playing' : '' }}" bindtap="onChangeLyricShow" hidden="{{ isLyricShow }}">
     <image class="player-img rotation {{ isPlaying ? '' : 'player-pause' }}" src="{{ picUrl }}"></image>
   </view>
 
+  <!-- 歌词面板 -->
+  <x-lyric
+    class="lyric"
+    isLyricShow="{{ !isLyricShow }}"
+    lyric="{{ lyric }}"
+    bindtap="onChangeLyricShow"
+    >
+  </x-lyric>
+  
   <!-- 歌曲进度条 -->
   <view class="progress-bar">
     <x-progress-bar
       bind:musicEnd="nextMusic"
+      bind:timeUpdate="timeUpdate"
       >
     </x-progress-bar>
   </view>

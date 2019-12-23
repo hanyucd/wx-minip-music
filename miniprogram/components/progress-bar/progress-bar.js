@@ -129,6 +129,8 @@ Component({
             'showTime.currentTime': `${ currentTimeFmt.min }:${ currentTimeFmt.sec }`
           });
           currentSec = sec;
+           // 联动歌词
+          this.triggerEvent('timeUpdate', { currentTime });
         }
       });
       // 监听背景音频自然播放结束事件

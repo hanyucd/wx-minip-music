@@ -11,7 +11,9 @@ Page({
    */
   data: {
     picUrl: '', // 歌曲的封面图
-    isPlaying: false // 歌曲是否播放中，默认 false 没有播放
+    isPlaying: false, // 歌曲是否播放中，默认 false 没有播放
+    isLyricShow: false, // 表示当前歌词是否显示
+    lyric: '' // 歌词
   },
 
   /**
@@ -58,6 +60,20 @@ Page({
 
       this.setData({ isPlaying: true });
       wx.hideLoading();
+
+      // 加载歌词
+      wx.cloud.callFunction({
+        name: 'music',
+        data: {
+          musicId,
+          $url: 'lyric'
+        }
+      }).then(res => {
+        const lrc = res.result.lrc;
+        this.setData({
+          lyric: lrc ? lrc.lyric : '暂无歌词'
+        });
+      });
     });
   },
   /**
@@ -82,5 +98,17 @@ Page({
     ++currentMusicIndex;
     currentMusicIndex = currentMusicIndex > musiclist.length ? 0 : currentMusicIndex;
     this._loadMusicDetail(musiclist[currentMusicIndex].id);
+  },
+  /**
+   * 显示 / 隐藏歌词
+   */
+  onChangeLyricShow() {
+    this.setData({ isLyricShow: !this.data.isLyricShow });
+  },
+  /**
+   * 监听子组件事件 将目前正在播放的时间，传递到歌词组件当中去
+   */
+  timeUpdate(event) {
+    this.selectComponent('.lyric').updata(event.detail.currentTime);
   }
 });
