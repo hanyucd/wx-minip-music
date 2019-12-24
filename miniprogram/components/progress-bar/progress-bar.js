@@ -13,7 +13,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSame: Boolean
   },
 
   /**
@@ -31,6 +31,9 @@ Component({
   lifetimes: {
     // 在组件布局完成后执行
     ready() {
+      if (this.properties.isSame && this.data.showTime.totalTime === '00:00') { // 当前进入的是同一首歌
+        this._durationTime();
+      }
       this._getMovableDis();
       this._bindBGMEvent();
     }
@@ -86,7 +89,7 @@ Component({
       // 播放事件
       backgroundAudioManager.onPlay(() => {
         isMoving = false;
-        console.log('onPlay');
+        this.triggerEvent('musicPlay');
       });
       // 监听背景音频停止事件
       backgroundAudioManager.onStop(() => {
@@ -94,7 +97,7 @@ Component({
       });
       // 监听背景音频暂停事件
       backgroundAudioManager.onPause(() => {
-        console.log('onPause');
+        this.triggerEvent('musicPause');
       });
       // 监听背景音频加载中事件
       backgroundAudioManager.onWaiting(() => {

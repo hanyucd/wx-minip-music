@@ -21,8 +21,11 @@
   <!-- 歌曲进度条 -->
   <view class="progress-bar">
     <x-progress-bar
+      isSame="{{ isSame }}"
       bind:musicEnd="nextMusic"
       bind:timeUpdate="timeUpdate"
+      bind:musicPlay="onPlay"
+      bind:musicPause="onPause"
       >
     </x-progress-bar>
   </view>

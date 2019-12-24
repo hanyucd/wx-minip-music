@@ -17,7 +17,8 @@ App({
 
     // 全局数据
     this.globalData = {
-      musicList: [] // 存储进入歌单歌曲列表页时的歌曲信息
+      musicList: [], // 存储进入歌单歌曲列表页时的歌曲信息
+      playingMusicId: -1,  // 播放歌曲的 id
     };
   },
 
@@ -28,5 +29,12 @@ App({
   setMusicList(musicList) {
     this.globalData.musicList = musicList;
   },
-
+  // 设置音乐 id
+  setMusicId(musicId) {
+    this.globalData.playingMusicId = musicId
+  },
+  // 获取音乐 id
+  getMusicId() {
+    return this.globalData.playingMusicId
+  }
 });

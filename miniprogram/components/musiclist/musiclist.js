@@ -17,8 +17,13 @@ Component({
   data: {
     playerId: -1
   },
+  // 组件所在页面的生命周期
   pageLifetimes: {
+    // 页面被展示时执行
     show() {
+      this.setData({
+        playerId: parseInt(app.getMusicId())
+      });
     }
   },
 
@@ -38,7 +43,7 @@ Component({
       this.setData({ playerId: ds.musicId });
       wx.navigateTo({
         url: `../../pages/player/player?musicId=${ ds.musicId }&index=${ ds.index }`,
-      })
+      });
     }
   }
 })
