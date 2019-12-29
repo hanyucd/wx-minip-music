@@ -14,11 +14,12 @@ Component({
 
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
+    /**
+     * 获取用户信息
+     */
     onGetUserInfo(event) {
+      // 允许授权，event 会有 userInfo 数据
       const userInfo = event.detail.userInfo;
       if (userInfo) {
         this.triggerEvent('loginSuccess', userInfo); // 给父组件传用户数据

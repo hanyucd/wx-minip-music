@@ -1,2 +1,34 @@
-<!--pages/blog-edit/blog-edit.wxml-->
-<text>pages/blog-edit/blog-edit.wxml</text>
+<view class="container">
+  <textarea
+    class="content"
+    placeholder="记录美好时光 ..."
+    maxlength="140"
+    auto-focus
+    bindinput="onInput"
+    bindfocus="onFocus"
+    bindblur="onBlur"
+    >
+    </textarea>
+
+    <view class="image-list">
+      <!-- 显示图片 -->
+      <block wx:for="{{ images }}" wx:key="*this">
+        <view class="image-wrap">
+          <image class="image" mode="aspectFill" src="{{ item }}" bindtap="onPreviewImage" data-imgsrc="{{ item }}" />
+           <!-- 图片删除按钮 -->
+          <i class="iconfont icon-shanchu" bindtap="onDelImage" data-index="{{ index }}"></i>
+        </view>
+      </block>
+
+      <!-- 选择图片 -->
+      <view class="image-wrap selectphoto" hidden="{{ images.length >= MAX_IMG_NUM }}" bindtap="onChooseImage">
+        <i class="iconfont icon-jiahao"></i>
+      </view>
+    </view>
+</view>
+
+<!-- 发布页面底部 -->
+<view class="footer" style="bottom: {{ footerBottom }}px">
+  <text class="words-num">{{ wordsNum }}</text>
+  <button class="send-btn" bindtap="send">发布</button>
+</view>

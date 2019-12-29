@@ -53,16 +53,16 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "musiclist",
-					"pathName": "pages/musiclist/musiclist",
-					"query": "playlistId= 557266433",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "blog",
 					"pathName": "pages/blog/blog",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "blog-edit",
+					"pathName": "pages/blog-edit/blog-edit",
+					"query": "userName=黑色幽默宇、_____&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/9LFicnceEOltjdyXp…US2aJ38l968uOdBRcmlEBFHddTMcOz1At6laibibcO64w/132",
 					"scene": null
 				}
 			]
