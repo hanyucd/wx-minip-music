@@ -1,0 +1,10 @@
+<x-bottom-modal isShowPopup="{{ isShowPopup }}">
+  <view slot="modal-content">
+    <button class="login"
+      open-type="getUserInfo"
+      bindgetuserinfo="onGetUserInfo"
+      >
+      微信授权登录
+    </button>
+  </view>
+</x-bottom-modal>
