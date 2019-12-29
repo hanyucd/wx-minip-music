@@ -17,14 +17,13 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           // 如果授权成功，就获取用户头像等信息
           wx.getUserInfo({
-            success(res) {
-              console.log(res);
+            success: res => {
+              this.onLoginSuccess({ detail: res.userInfo });
             }
           });
         } else {
           this.setData({ isShowPopup: true });
         }
-        console.log(res);
       }
     });
   },
@@ -32,7 +31,12 @@ Page({
    * 同意授权成功时，进行页面跳转 → 发布编辑页
    */
   onLoginSuccess(event) {
-    console.log(event);
+    const detail = event.detail;
+    this.setData({ isShowPopup: false });
+    
+    wx.navigateTo({
+      url: `../blog-edit/blog-edit?userName=${ detail.nickName }&avatarUrl=${ detail.avatarUrl }`
+    });
   },
   /**
    * 拒绝授权
