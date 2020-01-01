@@ -23,10 +23,10 @@ Page({
         count: 10
       }
     }).then(res => {
+      console.log(res);
       this.setData({
         blogList: [...this.data.blogList, ...res.result]
       });
-      console.log(res);
     })
   },
   /**
@@ -57,7 +57,7 @@ Page({
     this.setData({ isShowPopup: false });
     
     wx.navigateTo({
-      url: `../blog-edit/blog-edit?userName=${ detail.nickName }&avatarUrl=${ detail.avatarUrl }`
+      url: `../blog-edit/blog-edit?nickName=${ detail.nickName }&avatarUrl=${ detail.avatarUrl }`
     });
   },
   /**

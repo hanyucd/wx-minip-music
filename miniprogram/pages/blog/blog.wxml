@@ -10,6 +10,15 @@
   </view>
 </view>
 
+<!-- 博客卡片列表-->
+<view class="blog-list">
+  <block wx:for="{{ blogList }}" wx:key="_id">
+    <view class="blog-panel">
+      <x-blog-card blog="{{ item }}"></x-blog-card>
+    </view>
+  </block>
+</view>
+
 <!-- 博客底部授权弹出层 -->
 <x-login
   isShowPopup="{{ isShowPopup }}"

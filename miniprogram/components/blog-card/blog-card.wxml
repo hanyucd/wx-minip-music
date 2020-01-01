@@ -1,0 +1,19 @@
+<view class="blog">
+  <!-- 用户数据 -->
+  <view class="blog-title">
+    <image class="blog-portrait" src="{{ blog.avatarUrl }}"></image>
+    <view class="blog-box">
+      <view class="blog-nickName">{{ blog.nickName }}</view>
+      <view class="blog-time">{{ _creatTime }}</view>
+    </view>
+  </view>
+  
+  <!-- 博客数据 -->
+  <view class="blog-content">{{ blog.content }}</view>
+  <view class="blog-img">
+    <block wx:for="{{ blog.img }}" wx:key="index">
+      <!-- bind 和 catch 都可以绑定事件，它们的区别是 bind 有事件冒泡，而 catch 没有 -->
+      <image class="img" src="{{ item }}" lazy-load="true" mode="aspectFill" catch:tap="onPreviewImage" data-imgsrc="{{ item }}" data-imgs="{{ blog.img }}"></image>
+    </block>
+  </view>
+</view>

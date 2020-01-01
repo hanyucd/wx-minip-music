@@ -2,6 +2,7 @@
   "navigationBarTitleText": "小寅空间",
   "usingComponents": {
     "x-search": "/components/search/search",
-    "x-login": "/components/login/login"
+    "x-login": "/components/login/login",
+    "x-blog-card": "/components/blog-card/blog-card"
   }
 }
