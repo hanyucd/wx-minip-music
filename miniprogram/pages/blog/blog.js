@@ -6,6 +6,28 @@ Page({
    */
   data: {
     isShowPopup: false, // 是否显示授权底部弹窗，默认false不显示
+    blogList: [], // 存放博客页面的博客列表数据
+  },
+  onLoad() {
+    this._loadBlogList();
+  },
+  /**
+   * 加载博客列表
+   */
+  _loadBlogList() {
+    wx.cloud.callFunction({
+      name: 'blog',
+      data: {
+        $url: 'list',
+        start: 0,
+        count: 10
+      }
+    }).then(res => {
+      this.setData({
+        blogList: [...this.data.blogList, ...res.result]
+      });
+      console.log(res);
+    })
   },
   /**
    * 点击发布按钮时，获取授权信息，如没有授权则弹窗
