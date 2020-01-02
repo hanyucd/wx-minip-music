@@ -26,6 +26,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    /**
+     * 预览图片
+     */
+    onPreviewImage(event) {
+      const ds = event.currentTarget.dataset;
+      wx.previewImage({
+        urls: ds.imgs,
+        current: ds.imgsrc
+      });
+    }
   }
 })

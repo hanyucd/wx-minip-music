@@ -12,21 +12,37 @@ Page({
     this._loadBlogList();
   },
   /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+    this.setData({ blogList: [] });
+    this._loadBlogList(0);
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+    this._loadBlogList(this.data.blogList.length);
+  },
+  /**
    * 加载博客列表
    */
-  _loadBlogList() {
+  _loadBlogList(start = 0) {
+    wx.showLoading({ title: '加载中...' });
+
     wx.cloud.callFunction({
       name: 'blog',
       data: {
-        $url: 'list',
-        start: 0,
-        count: 10
+        start,
+        count: 2,
+        $url: 'list'
       }
     }).then(res => {
-      console.log(res);
       this.setData({
         blogList: [...this.data.blogList, ...res.result]
       });
+      wx.hideLoading();
+      wx.stopPullDownRefresh(); // 停止当前页面下拉刷新
     })
   },
   /**
@@ -70,5 +86,11 @@ Page({
       confirmText: '回去授权',
       confirmColor: '#d81e06'
     });
+  },
+  /**
+   * 进入博客卡片详情
+   */
+  goComment(event) {
+    console.log(event);
   }
 })

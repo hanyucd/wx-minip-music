@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "小寅空间",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "x-search": "/components/search/search",
     "x-login": "/components/login/login",
