@@ -129,6 +129,9 @@ Page({
           setTimeout(() => {
             // 返回博客页面，并刷新
             wx.navigateBack();
+            const pages = getCurrentPages();
+            const prevPage = pages[pages.length - 2]; // 获取上一级页面栈
+            prevPage.onPullDownRefresh();
           }, 800);
         })
       })
