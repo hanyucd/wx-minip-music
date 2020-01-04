@@ -1,4 +1,6 @@
 // miniprogram/pages/blog/blog.js
+let keyword = '' // 搜索关键字
+
 Page({
 
   /**
@@ -25,6 +27,14 @@ Page({
     this._loadBlogList(this.data.blogList.length);
   },
   /**
+   * 搜索
+   */
+  onSearch(event) {
+    keyword = event.detail.keyword;
+    this.setData({ blogList: [] });
+    this._loadBlogList(0);
+  },
+  /**
    * 加载博客列表
    */
   _loadBlogList(start = 0) {
@@ -33,6 +43,7 @@ Page({
     wx.cloud.callFunction({
       name: 'blog',
       data: {
+        keyword,
         start,
         count: 2,
         $url: 'list'

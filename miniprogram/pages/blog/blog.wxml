@@ -5,7 +5,7 @@
       <i class="iconfont icon-fabu"></i>
     </view>
     <view class="blog-search">
-      <x-search></x-search>
+      <x-search bind:search="onSearch"></x-search>
     </view>
   </view>
 </view>

@@ -26,7 +26,8 @@ Component({
       keyword = event.detail.value;
     },
     onSearch() {
-      console.log(keyword);
+      // 把搜索事件抛给父组件，提高组件的可重用性
+      this.triggerEvent('search', { keyword });
     }
   }
 })
