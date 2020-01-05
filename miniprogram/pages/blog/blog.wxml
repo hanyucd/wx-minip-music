@@ -15,6 +15,15 @@
   <block wx:for="{{ blogList }}" wx:key="_id">
     <view class="blog-panel">
       <x-blog-card blog="{{ item }}" data-blogid="{{ item._id }}" bindtap="goComment"></x-blog-card>
+      <!-- 评论、分享组件 iconfont 调用外部样式-->
+      <x-blog-ctrl
+        iconfont="iconfont"
+        icon-pinglun="icon-pinglun"
+        icon-fenxiang="icon-fenxiang"
+        blogId="{{ item._id }}"
+        blog="{{ item }}"
+        >
+      </x-blog-ctrl>
     </view>
   </block>
 </view>
@@ -23,6 +32,6 @@
 <x-login
   isShowPopup="{{ isShowPopup }}"
   bind:loginSuccess="onLoginSuccess"
-  bind:onLoginFail="onLoginFail"
+  bind:loginFail="onLoginFail"
   >
 </x-login>

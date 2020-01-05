@@ -24,7 +24,7 @@ Component({
       if (userInfo) {
         this.triggerEvent('loginSuccess', userInfo); // 给父组件传用户数据
       } else {
-        this.triggerEvent('onLoginFail')
+        this.triggerEvent('loginFail')
       }
     }
   }
