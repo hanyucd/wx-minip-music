@@ -59,8 +59,9 @@
   caret-color: rgb(216, 30, 6, 0.6);
 }
 
-.send {
-  background: #d43c33;
+.send-btn {
+  background: #d81e06;
   color: #fff;
-  font-size: 28rpx;
+  font-size: 24rpx;
+  margin-right: 20rpx;
 }

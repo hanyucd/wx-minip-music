@@ -2,7 +2,6 @@
 let keyword = '' // 搜索关键字
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -104,4 +103,4 @@ Page({
   goComment(event) {
     wx.navigateTo({ url: `../../pages/blog-comment/blog-comment?blogId=${ event.currentTarget.dataset.blogid }` });
   }
-})
+});

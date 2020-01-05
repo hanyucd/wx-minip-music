@@ -5,12 +5,20 @@ cloud.init();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  }
+   const { OPENID } = cloud.getWXContext();
+   // 发送订阅消息
+   const result = await cloud.openapi.subscribeMessage.send({
+      touser: OPENID,
+      page: `/pages/blog-comment/blog-comment?blogId=${ event.blogId }`, // 用户点击推送消息打开的页面
+      data: {
+        thing4: {
+          value: '评价完成'
+        },
+        thing1: {
+          value: event.content
+        }
+      },
+      templateId: 'SoCyIbjM8A9C4HOqFliXkkqRGgUKsh0cjlBPnSZiLd0'
+  });
+  return result;
 };

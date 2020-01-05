@@ -62,40 +62,66 @@ Component({
         confirmColor: '#d81e06'
       });
     },
+    onInput(event) {
+      const content = event.detail.value;
+      this.setData({ content });
+    },
     /**
      * 发送评论
      */
-    onSend(event) {
-      console.log(event);
-      let formId = event.detail.formId  // 用于发送模板消息formId
-      let content = event.detail.value.content;
+    onSend() {
+      const content = this.data.content;
 
-      // if (content.trim() == '') {
-      //   wx.showModal({
-      //     title: '评论提醒',
-      //     content: '评论的内容不能为空噢',
-      //     confirmText: '我知道了',
-      //     showCancel: false,
-      //     confirmColor: '#d81e06'
-      //   })
-      //   return;
-      // }
+      if (content.trim() == '') {
+        wx.showModal({
+          title: '评论提醒',
+          content: '评论的内容不能为空噢',
+          confirmText: '我知道了',
+          showCancel: false,
+          confirmColor: '#d81e06'
+        })
+        return;
+      }
 
-      // wx.showLoading({ title: '评论中...', mask: true });
-      // // 小程序端插入数据库，默认带_openId字段
-      // db.collection('blog-comment').add({
-      //   data: {
-      //     content,
-      //     blogId: this.properties.blogId,
-      //     nickName: userInfo.nickName,
-      //     avatarUrl: userInfo.avatarUrl,
-      //     createTime: db.serverDate()
-      //   }
-      // }).then(res => {
-      //   wx.hideLoading();
-      //   wx.showToast({ title: '评论成功' });
-      //   this.setData({ isShowComment: false });
-      // });
+      wx.showLoading({ title: '评论中...', mask: true });
+      // 小程序端插入数据库，默认带_openId字段
+      db.collection('blog-comment').add({
+        data: {
+          content,
+          blogId: this.properties.blogId,
+          nickName: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl,
+          createTime: db.serverDate()
+        }
+      }).then(res => {
+        wx.hideLoading();
+        wx.showToast({ title: '评论成功' });
+        this.setData({ 
+          isShowComment: false,
+          content: ''
+        });
+
+        // 发送订阅消息通知请求
+        wx.requestSubscribeMessage({
+          tmplIds: ['SoCyIbjM8A9C4HOqFliXkkqRGgUKsh0cjlBPnSZiLd0'],
+          success: res => {
+            if (res['SoCyIbjM8A9C4HOqFliXkkqRGgUKsh0cjlBPnSZiLd0'] === 'accept') {
+              // 调用云函数发送订阅模板消息通知
+              wx.cloud.callFunction({
+                name: 'sendMessage',
+                data: {
+                  content,
+                  blogId: this.properties.blogId
+                }
+              }).then(res => {
+                console.log(res);
+              })
+            } else {
+              console.log('订阅失败');
+            }
+          }
+        });
+      });
     }
   }
 });
