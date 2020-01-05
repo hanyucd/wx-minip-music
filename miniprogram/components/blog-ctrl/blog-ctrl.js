@@ -66,34 +66,36 @@ Component({
      * 发送评论
      */
     onSend(event) {
+      console.log(event);
+      let formId = event.detail.formId  // 用于发送模板消息formId
       let content = event.detail.value.content;
 
-      if (content.trim() == '') {
-        wx.showModal({
-          title: '评论提醒',
-          content: '评论的内容不能为空噢',
-          confirmText: '我知道了',
-          showCancel: false,
-          confirmColor: '#d81e06'
-        })
-        return;
-      }
+      // if (content.trim() == '') {
+      //   wx.showModal({
+      //     title: '评论提醒',
+      //     content: '评论的内容不能为空噢',
+      //     confirmText: '我知道了',
+      //     showCancel: false,
+      //     confirmColor: '#d81e06'
+      //   })
+      //   return;
+      // }
 
-      wx.showLoading({ title: '评论中...', mask: true });
-      // 小程序端插入数据库，默认带_openId字段
-      db.collection('blog-comment').add({
-        data: {
-          content,
-          blogId: this.properties.blogId,
-          nickName: userInfo.nickName,
-          avatarUrl: userInfo.avatarUrl,
-          createTime: db.serverDate()
-        }
-      }).then(res => {
-        wx.hideLoading();
-        wx.showToast({ title: '评论成功' });
-        this.setData({ isShowComment: false });
-      });
+      // wx.showLoading({ title: '评论中...', mask: true });
+      // // 小程序端插入数据库，默认带_openId字段
+      // db.collection('blog-comment').add({
+      //   data: {
+      //     content,
+      //     blogId: this.properties.blogId,
+      //     nickName: userInfo.nickName,
+      //     avatarUrl: userInfo.avatarUrl,
+      //     createTime: db.serverDate()
+      //   }
+      // }).then(res => {
+      //   wx.hideLoading();
+      //   wx.showToast({ title: '评论成功' });
+      //   this.setData({ isShowComment: false });
+      // });
     }
   }
 });

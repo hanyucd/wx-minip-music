@@ -19,14 +19,15 @@
 
 <!-- 底部弹出层-评论输入 -->
 <x-bottom-modal isShowPopup="{{ isShowComment }}">
-  <form slot="modal-content">
+  <form slot="modal-content" report-submit="true" bindsubmit="onSend">
     <textarea
+      name="content"
       class="comment-content"
+      placeholder="写评论"
       value="{{ content }}"
-      placeholder="写下你的想法..."
       fixed="true"
       >
     </textarea>
-      <button class="send-btn">发布</button>
+    <button class="send" form-type="submit">发送</button>
   </form>
 </x-bottom-modal >
