@@ -12,14 +12,15 @@
   border-radius: 34rpx;
   background: #f5f5f5;
   padding-left: 54rpx;
+  margin-right: 25rpx;
 }
 
 .search-btn {
   color: #fff;
   background: #d81e06;
-  margin-left: 20rpx;
   font-size: 24rpx;
   width: 80rpx;
+  border-radius: 40rpx;
 }
 
 .bar-style {

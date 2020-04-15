@@ -21,6 +21,8 @@ Component({
     onGetUserInfo(event) {
       // 允许授权，event 会有 userInfo 数据
       const userInfo = event.detail.userInfo;
+      console.log(event);
+      
       if (userInfo) {
         this.triggerEvent('loginSuccess', userInfo); // 给父组件传用户数据
       } else {

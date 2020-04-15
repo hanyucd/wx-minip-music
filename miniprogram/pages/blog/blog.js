@@ -44,7 +44,7 @@ Page({
       data: {
         keyword,
         start,
-        count: 2,
+        count: 20,
         $url: 'list'
       }
     }).then(res => {
