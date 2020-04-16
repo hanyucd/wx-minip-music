@@ -112,6 +112,6 @@ Page({
    * 进入博客卡片详情
    */
   goComment(event) {
-    wx.navigateTo({ url: `../../pages/blog-comment/blog-comment?blogId=${ event.currentTarget.dataset.blogid }` });
+    wx.navigateTo({ url: `../../pages/blog-comment/blog-comment?blogId=${ event.currentTarget.dataset.blogId }` });
   }
 });
