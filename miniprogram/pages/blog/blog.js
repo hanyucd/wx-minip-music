@@ -26,6 +26,17 @@ Page({
     this._loadBlogList(this.data.blogList.length);
   },
   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage(event) {
+    let blog = event.target.dataset.blog;
+    return {
+      title: blog.content,
+      path: "/pages/blog-comment/blog-comment"
+    };
+  },
+
+  /**
    * 搜索
    */
   onSearch(event) {
