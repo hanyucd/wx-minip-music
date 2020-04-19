@@ -1,2 +1,34 @@
 <!--miniprogram/pages/profile/profile.wxml-->
-<text>miniprogram/pages/profile/profile.wxml</text>
+<view class="profile-header">
+  <view class="avatar-url">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <open-data type="userNickName" class="nickname"></open-data>
+</view>
+
+<view class="nav">
+  <!-- 最近播放 -->
+  <view class="nav-item">
+    <navigator class="content" hover-class="none" url="">
+      <i class="iconfont icon-bofangliebiao icon-nav"></i>
+      <text class="text">最近播放</text>
+      <i class="iconfont icon-you"></i>
+    </navigator>
+  </view>
+  <!-- 我的发现 -->
+  <view class="nav-item">
+    <navigator class="content" hover-class="none" url="">
+      <i class="iconfont icon-xieboke icon-nav"></i>
+      <text class="text">我的发现</text>
+      <i class="iconfont icon-you"></i>
+    </navigator>
+  </view>
+  <!-- 小程序码 -->
+  <view class="nav-item">
+    <navigator class="content" hover-class="none" url="">
+      <i class="iconfont icon-erweima icon-nav"></i>
+      <text class="text">小程序码</text>
+      <i class="iconfont icon-you"></i>
+    </navigator>
+  </view>
+</view>
