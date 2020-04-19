@@ -15,20 +15,12 @@
       <i class="iconfont icon-you"></i>
     </navigator>
   </view>
-  <!-- 我的发现 -->
-  <view class="nav-item">
-    <navigator class="content" hover-class="none" url="/pages/blog-history/blog-history">
-      <i class="iconfont icon-xieboke icon-nav"></i>
-      <text class="text">我的博客</text>
-      <i class="iconfont icon-you"></i>
-    </navigator>
-  </view>
   <!-- 小程序码 -->
   <view class="nav-item">
-    <navigator class="content" hover-class="none" url="">
+    <view class="content" hover-class="none" bind:tap="onTapQRCode">
       <i class="iconfont icon-erweima icon-nav"></i>
       <text class="text">小程序码</text>
       <i class="iconfont icon-you"></i>
-    </navigator>
+    </view>
   </view>
 </view>
