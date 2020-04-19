@@ -81,6 +81,9 @@ Page({
         backgroundAudioManager.coverImgUrl = musicInfo.al.picUrl;
         backgroundAudioManager.singer = musicInfo.ar[0].name;
         backgroundAudioManager.epname = musicInfo.ar.name;
+
+        // 保存播放历史到本地存储
+        this._savePlayHistory();
       }
 
       this.setData({ isPlaying: true });
@@ -101,6 +104,32 @@ Page({
       });
     });
   },
+
+  /**
+   * 保存播放历史到本地存储
+   */
+  _savePlayHistory() {
+    // 当前播放歌曲
+    const currentSong = musiclist[currentMusicIndex];
+    // 从全局属性获取openid
+    const openid = app.globalData.openid;
+    // 从本地存储获取播放历史数组
+    const playHistory = wx.getStorageSync(openid);
+
+    for (let i = 0, len = playHistory.length; i < len; i++) {
+      if (playHistory[i].id === currentSong.id) {
+        playHistory.splice(i, 1);
+        break;
+      }
+    }
+    // 在数组开头插入
+    playHistory.unshift(currentSong);
+    wx.setStorage({
+      key: openid,
+      data: playHistory
+    });
+  },
+
   /**
    * 点击播放按钮切换播放 和 暂停
    */

@@ -19,7 +19,10 @@ App({
     this.globalData = {
       musicList: [], // 存储进入歌单歌曲列表页时的歌曲信息
       playingMusicId: -1,  // 播放歌曲的 id
+      openid: -1
     };
+
+    this._getOpenId(); // 获取openid并存储
   },
 
   /**
@@ -36,5 +39,18 @@ App({
   // 获取音乐 id
   getMusicId() {
     return this.globalData.playingMusicId
+  },
+  // 获取用户 openid
+  _getOpenId() {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      const openid = res.result.openid;
+      this.globalData.openid = openid;
+      // 该用户从未打开过小程序，未存储过openid在本地
+      if (wx.getStorageSync(openid) == '') {
+        wx.setStorageSync(openid, []); // 存储openid到本地
+      }
+    })
   }
 });
