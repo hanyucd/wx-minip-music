@@ -1,6 +1,8 @@
 const Koa = require('koa');
 const cors = require('koa2-cors'); // 解决跨域问题
 const Router = require('koa-router'); // 用于写后端提供给前端的接口
+const koaBody = require('koa-body') // 对post请求前端传来的数据的获取，需要此依赖
+
 const playlist = require('./controller/playlist');
 
 const ENV = 'cloud-develop-143u6'; // 云开发环境ID (下面会赋值给全局属性)
@@ -11,6 +13,11 @@ const router = new Router();
 app.use(cors({
   origin: ['http://localhost:8080'], // 允许访问本服务的域
   credentials: true
+}));
+
+// 接收 post 参数解析
+app.use(koaBody({
+  multipart: true
 }));
 
 // 全局中间件

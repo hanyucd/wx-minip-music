@@ -33,7 +33,7 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/',
-    redirect: '/playlist'
+    redirect: '/playlist/list'
   },
   {
     path: '/login',
@@ -50,9 +50,15 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: '/list',
+        path: 'list',
         component: () => import('@/views/playlist'),
         meta: { title: '歌单管理', icon: 'table' }
+      },
+      {
+        path: 'edit/:id',
+        component: () => import('@/views/playlist/edit'),
+        meta: { title: '编辑歌单', icon: 'table' },
+        hidden: true
       }
     ]
   },
@@ -79,7 +85,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

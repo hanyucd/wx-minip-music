@@ -20,11 +20,20 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 确认删除的对话框 -->
+    <el-dialog title="提示" :visible.sync="delDialogVisible" width="30%">
+      <span>确定删除歌单《{{ playlistName }}》吗?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="delDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doDel">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/playlist'
+import { fetchList, del } from '@/api/playlist'
 import scroll from '@/utils/scroll' // 滚动条到底部执行回调方法
 
 export default {
@@ -32,7 +41,10 @@ export default {
     return {
       playlist: [],
       count: 50,
-      loading: false
+      loading: false,
+      delDialogVisible: false, // 删除歌单对话框是否显示
+      playlistName: '', // 要删除的歌单名称
+      info: {}
     }
   },
   created() {
@@ -57,6 +69,41 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    /**
+     * 编辑
+     */
+    onEdit(row) {
+      this.$router.push(`/playlist/edit/${row._id}`)
+    },
+    /**
+     * 删除
+     */
+    onDel(row) {
+      this.delDialogVisible = true
+      this.playlistName = row.name
+      this.info.id = row._id
+    },
+    /**
+     * 确定删除
+     */
+    doDel() {
+      del({ id: this.info.id })
+        .then(res => {
+          this.delDialogVisible = false
+          if (res.data.deleted > 0) {
+            this.playlist = []
+            this._getList()
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            })
+          } else {
+            this.$message.error('删除失败')
+          }
+        }).catch(error => {
+          console.log(error)
+        })
     }
   }
 }

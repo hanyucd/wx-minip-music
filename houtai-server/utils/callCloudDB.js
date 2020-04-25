@@ -2,29 +2,30 @@ const rp = require('request-promise'); // node环境发送http请求的模块
 const getAccessToken = require('./getAccessToken'); // 微信接口调用凭证
 
 /**
- * callCloudFn 调用云函数方法
+ * callCloudDB 调用云数据库方法
  * @param {object} ctx 上下文，ctx.state.env云开发环境ID
- * @param {string} fnName 云函数名称
- * @param {object} params 传递给云函数的参数
+ * @param {string} fnName 接口的增删改查名称，增databaseadd、删databasedelete、改databaseupdate、查databasequery
+ * @param {object} query 数据库操作语句
  */
-const callCloudFn = async (ctx, fnName, params) => {
+const callCloudDB = async (ctx, fnName, query = {}) => {
   const ACCESS_TOKEN = await getAccessToken(); // 获取微信接口调用凭证
-  const url = `https://api.weixin.qq.com/tcb/invokecloudfunction?access_token=${ ACCESS_TOKEN }&env=${ ctx.state.env }&name=${ fnName }`;
+  const url = `https://api.weixin.qq.com/tcb/${ fnName }?access_token=${ ACCESS_TOKEN }`;
   const options = {
     method: 'POST',
     uri: url,
     body: {
-      ...params
+      query, // 数据库操作语句
+      env: ctx.state.env // 云环境ID
     },
-    json: true // 自动将字符串转为JSON格式
+    json: true
   };
-
+  
   // 发送请求，并返回数据
   return await rp(options)
     .then(res => res)
     .catch(error => {
       console.log(error);
     });
-};
+}
 
-module.exports = callCloudFn;
+module.exports = callCloudDB;
