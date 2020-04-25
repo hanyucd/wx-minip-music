@@ -1,9 +1,28 @@
 const Koa = require('koa');
-const app = new Koa;
+const cors = require('koa2-cors'); // 解决跨域问题
+const Router = require('koa-router'); // 用于写后端提供给前端的接口
+const playlist = require('./controller/playlist');
 
-app.use(async ctx => {
-  ctx.body = 'response';
+const ENV = 'cloud-develop-143u6'; // 云开发环境ID (下面会赋值给全局属性)
+const app = new Koa();
+const router = new Router();
+
+// 处理跨域
+app.use(cors({
+  origin: ['http://localhost:8080'], // 允许访问本服务的域
+  credentials: true
+}));
+
+// 全局中间件
+app.use(async (ctx, next) => {
+  // ctx 上下文，所以中间件都可访问其属性
+  ctx.state.env = ENV; // 赋值给全局属性，其他中间件可通过ctx.state.env使用
+  await next();
 });
+
+router.use('/playlist', playlist.routes());
+app.use(router.routes()); // 使用路由
+app.use(router.allowedMethods()); // 允许使用方法
 
 const port = 3000;
 app.listen(port, () => {
