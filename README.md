@@ -11,8 +11,8 @@
 
 - cloudfunctions 云函数目录
 - miniprogram 小程序页面/组件/逻辑
-- houtai-client 后台管理前端 Vue
-- houtai-server 后台管理后端 Node + Koa + 云开发 HTTP API
+- houtai-client 后台管理前端 ( Vue )
+- houtai-server 后台管理后端 ( Node + Koa + 云开发 HTTP API )
 
 ### 涉及知识
 
