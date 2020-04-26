@@ -18,19 +18,14 @@
 
 <p align="center">
   <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/playlist.png" width="320" height="600" />
-  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/playlist.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/music.png" width="320" height="600" />
 
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/cart.png" width="320" height="600" />
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/music.png" width="320" height="600" />
-  
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/player.png" width="320" height="600" />
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/blog.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/player.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/blog.png" width="320" height="600" />
 
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/comment.png" width="320" height="600" />
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/play_history.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/comment.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/play_history.png" width="320" height="600" />
 
-  <img src="https://github.com/hanyucd/vue-mall-mobile/blob/master/screenshots/profile.png" width="320" height="600" />
+  <img src="https://github.com/hanyucd/wx-minip-music/blob/master/screenshots/profile.png" width="320" height="600" />
 </p>
-
-
 
