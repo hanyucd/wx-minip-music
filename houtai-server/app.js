@@ -1,7 +1,8 @@
 const Koa = require('koa');
+const chalk = require('chalk'); // 改变console.log打印颜色的插件
 const cors = require('koa2-cors'); // 解决跨域问题
 const Router = require('koa-router'); // 用于写后端提供给前端的接口
-const koaBody = require('koa-body') // 对post请求前端传来的数据的获取，需要此依赖
+const koaBody = require('koa-body'); // 对post请求前端传来的数据的获取，需要此依赖
 
 const playlist = require('./controller/playlist');
 const swiper = require('./controller/swiper');
@@ -37,5 +38,5 @@ app.use(router.allowedMethods()); // 允许使用方法
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`> 服务已开启，访问：http://localhost:${ port }`);
+  console.log(chalk.green(`> 服务已开启，访问：http://localhost:${ port }`));
 });
