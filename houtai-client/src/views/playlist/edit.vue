@@ -50,7 +50,7 @@ export default {
       update(this.playlist)
         .then(res => {
           if (res.data.modified > 0) {
-            this.$message({ message: '更新成功', type: 'success'})
+            this.$message({ message: '更新成功', type: 'success' })
           } else {
             this.$message.error('更新失败')
           }

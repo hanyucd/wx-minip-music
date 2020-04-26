@@ -1,7 +1,6 @@
-const Router = require('koa-router'); // 用于写后端提供给前端的接口
 const callCloudFn = require('../utils/callCloudFn'); // 调用云函数的封装
 const callCloudDB = require('../utils/callCloudDB'); // 操作云数据库的封装
-
+const Router = require('koa-router'); // 用于写后端提供给前端的接口
 const router = new Router(); // 初始化 koa-router
 
 /**
