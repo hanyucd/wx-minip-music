@@ -14,6 +14,10 @@
 - houtai-client 后台管理前端 Vue
 - houtai-server 后台管理后端 Node + Koa + 云开发 HTTP API
 
+### 涉及知识
+
+播放器、云数据库、云存储、云函数、授权、云调用发送订阅消息、分享、Tcb-Router、HTTP API ......
+
 ### 屏幕截图
 
 <p align="center">
